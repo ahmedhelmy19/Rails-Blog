@@ -1,0 +1,24 @@
+<%= form_with(model: post, local: true) do |form| %>
+  <% if post.errors.any? %>
+    <div class="bg-red-100 text-red-800 p-4 mb-4 rounded">
+      <h2 class="font-semibold">⚠️ يوجد أخطاء:</h2>
+      <ul>
+        <% post.errors.full_messages.each do |message| %>
+          <li>• <%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-4">
+    <%= form.label :title, "العنوان", class: "block text-gray-700 font-medium" %>
+    <%= form.text_field :title, class: "w-full mt-1 p-2 border rounded" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :body, "المحتوى", class: "block text-gray-700 font-medium" %>
+    <%= form.text_area :body, rows: 6, class: "w-full mt-1 p-2 border rounded" %>
+  </div>
+
+  <%= form.submit class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
+<% end %>

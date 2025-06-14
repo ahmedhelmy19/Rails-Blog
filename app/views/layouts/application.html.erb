@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>📓 Blog</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="bg-gray-100 text-gray-800 min-h-screen">
+    <!-- Navbar -->
+    <nav class="bg-white shadow mb-6">
+      <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold text-blue-600"><%= link_to "MyBlog", root_path, class: "hover:underline" %></h1>
+        <%= link_to "➕ تدوينة جديدة", new_post_path, class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
+      </div>
+    </nav>
+
+    <!-- Flash Messages -->
+    <% flash.each do |key, message| %>
+      <div class="container mx-auto max-w-2xl mb-4">
+        <div class="p-4 rounded text-white
+          <%= key == "notice" ? 'bg-green-500' : 'bg-red-500' %>">
+          <%= message %>
+        </div>
+      </div>
+    <% end %>
+
+    <!-- Page Content -->
+    <%= yield %>
+  </body>
+</html>
